@@ -28,9 +28,9 @@ public class FragmentDialog extends DialogFragment {
 
     @BindView(R.id.textView)
     TextView textView;
-    @BindView(R.id.button)
+    @BindView(R.id.bnCancel)
     Button button;
-    @BindView(R.id.button2)
+    @BindView(R.id.bnOK)
     Button button2;
 
     @Nullable
@@ -43,15 +43,15 @@ public class FragmentDialog extends DialogFragment {
         return view;
     }
 
-    @OnClick({R.id.button, R.id.button2})
+    @OnClick({R.id.bnCancel, R.id.bnOK})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.button:
-                listener.onOkClicked();
+            case R.id.bnCancel:
+                listener.onCancelClicked();
                 dismiss();
                 break;
-            case R.id.button2:
-                listener.onCancelClicked();
+            case R.id.bnOK:
+                listener.onOkClicked();
                 dismiss();
                 break;
         }

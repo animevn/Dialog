@@ -5,4 +5,6 @@
     <string name="bnCancel">Cancel</string>
     <string name="bnOk">OK</string>
     <string name="alert">Really?</string>
+    <string name="ok_pressed">OK Pressed</string>
+    <string name="cancel_pressed">Cancel Pressed</string>
 </resources>
