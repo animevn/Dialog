@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">DialogDemo</string>
+    <string name="app_name">Dialog Demo</string>
+    <string name="bnClass">Dialog</string>
+    <string name="holder">Wait</string>
+    <string name="bnCancel">Cancel</string>
+    <string name="bnOk">OK</string>
+    <string name="alert">Really?</string>
 </resources>
