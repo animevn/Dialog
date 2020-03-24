@@ -1,4 +1,4 @@
-package com.haanhgs.app.dialogdemo;
+package com.haanhgs.app.dialogdemo.view;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,14 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import com.haanhgs.app.dialogdemo.R;
+import com.haanhgs.app.dialogdemo.viewmodel.ViewModel;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-//this is to use instance of - can transfer to viewmodel
 public class FragmentDialog extends DialogFragment {
 
     @BindView(R.id.textView)
@@ -24,16 +27,13 @@ public class FragmentDialog extends DialogFragment {
     @BindView(R.id.bnOK)
     Button button2;
 
-    private OnButtonClicked listener;
+    private FragmentActivity activity;
+    private ViewModel viewModel;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof OnButtonClicked){
-            listener = (OnButtonClicked)context;
-        }else {
-            throw new ClassCastException("must implement OnButtonClicked lister if this is called");
-        }
+        activity = getActivity();
     }
 
     @Nullable
@@ -43,6 +43,7 @@ public class FragmentDialog extends DialogFragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog, container, false);
         ButterKnife.bind(this, view);
+        viewModel = new ViewModelProvider(activity).get(ViewModel.class);
         return view;
     }
 
@@ -50,11 +51,11 @@ public class FragmentDialog extends DialogFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bnCancel:
-                listener.onCancelClicked();
+                viewModel.setString(getResources().getString(R.string.cancel_pressed));
                 dismiss();
                 break;
             case R.id.bnOK:
-                listener.onOkClicked();
+                viewModel.setString(getResources().getString(R.string.ok_pressed));
                 dismiss();
                 break;
         }
