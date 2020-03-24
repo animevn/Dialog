@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements FragmentDialog.OnButtonClicked{
+public class MainActivity extends AppCompatActivity implements OnButtonClicked{
 
     @BindView(R.id.tvMessage)
     TextView tvMessage;
@@ -24,12 +24,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDialog.On
     private void loadSavedInstanceState(Bundle bundle){
         if (bundle != null){
             tvMessage.setText(bundle.getString(MESSAGE));
-
-            //fragment survives configuration change, but interface get nulled
-            //so we have to set interface again.
-            FragmentDialog fragmentDialog = (FragmentDialog)
-                    getSupportFragmentManager().findFragmentByTag("dialog");
-            if (fragmentDialog != null) fragmentDialog.setListener(this);
         }
     }
 
@@ -52,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDialog.On
         Fragment fragment = getSupportFragmentManager().findFragmentByTag("dialog");
         if (fragment == null){
             FragmentDialog dialog = new FragmentDialog();
-            dialog.setListener(this);
             dialog.show(getSupportFragmentManager(), "dialog");
         }
     }
