@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+//test change git name
 public class MainActivity extends AppCompatActivity{
 
     @BindView(R.id.tvMessage)
