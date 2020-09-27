@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.haanhgs.app.dialogdemo.R;
-import com.haanhgs.app.dialogdemo.viewmodel.ViewModel;
+import com.haanhgs.app.dialogdemo.viewmodel.MyViewModel;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,13 +22,19 @@ public class MainActivity extends AppCompatActivity{
     @BindView(R.id.bnClass)
     Button bnClass;
 
+    private MyViewModel viewModel;
+
+    private void initViewModel(){
+        viewModel = new ViewModelProvider(this).get(MyViewModel.class);
+        viewModel.getLiveData().observe(this, model -> tvMessage.setText(model.getInform()));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
-        viewModel.getLiveData().observe(this, model -> tvMessage.setText(model.getInform()));
+        initViewModel();
     }
 
     private void openDialog(){
@@ -42,6 +48,7 @@ public class MainActivity extends AppCompatActivity{
 
     @OnClick({R.id.bnClass})
     public void onViewClicked(View view) {
+        viewModel.setString("");
         openDialog();
     }
 }

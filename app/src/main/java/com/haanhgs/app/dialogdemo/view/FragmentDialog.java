@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import com.haanhgs.app.dialogdemo.R;
-import com.haanhgs.app.dialogdemo.viewmodel.ViewModel;
+import com.haanhgs.app.dialogdemo.viewmodel.MyViewModel;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -28,7 +28,7 @@ public class FragmentDialog extends DialogFragment {
     Button button2;
 
     private FragmentActivity activity;
-    private ViewModel viewModel;
+    private MyViewModel viewModel;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -43,7 +43,7 @@ public class FragmentDialog extends DialogFragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dialog, container, false);
         ButterKnife.bind(this, view);
-        viewModel = new ViewModelProvider(activity).get(ViewModel.class);
+        viewModel = new ViewModelProvider(activity).get(MyViewModel.class);
         return view;
     }
 
